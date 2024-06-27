@@ -1,4 +1,4 @@
-hashmap = {
+hashmap_list = {
   "กกกุง": "DISTRICT",
   "กกดู่": "DISTRICT",
   "กกตูม": "DISTRICT",
