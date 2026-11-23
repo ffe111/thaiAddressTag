@@ -1,17 +1,22 @@
-# Thai Address Tagging Notebook
+Thai Address Detection Tagging
+Manual Matching with addresses file.
+Making and Testing Solution, Flow of Algorithym on Colab Google
+Get Text Sentence Address
+|Clean text find and extract name, phone num 
+|Tokenize with CustomTokenizer by PythaiNLP
+|SpellChecker with Custom wordLists (BoW) by PythaiNLP
+Matching Address with addresses file for Validation Data from word_lists
+|Show result
 
-English | [ภาษาไทย](README.th.md)
-
-See how a dictionary-based Thai NLP pipeline turns address text into structured fields without training a model. The notebook shows the intermediate tokens, spelling corrections, and matched address components so you can inspect what changed at each step.
-
-## Explore the notebook
-
-Open [`address_taging.ipynb`](address_taging.ipynb) on GitHub to inspect the saved outputs, or [open it in Google Colab](https://colab.research.google.com/github/ffe111/thaiAddressTag/blob/main/address_taging.ipynb) to experiment. It contains exploratory cells for different PyThaiNLP versions, so use the relevant setup and pipeline cells as a group rather than assuming the entire notebook is one reproducible run. [`addresses.py`](addresses.py) and [`hashmap.py`](hashmap.py) contain reference data used by the project.
-
-## What it can and cannot do
-
-The workflow combines text cleanup, custom tokenization, dictionary-based spelling correction, and reference matching for province, district, subdistrict, and postal code. It does not predict a missing address or verify deliverability. Try it with synthetic inputs, not real contact details.
-
-Want an HTTP endpoint? See the [dictionary-based FastAPI implementation](https://github.com/ffe111/address_detection_api).
-
-<!-- Maintainers: Update the English README first, then mirror the change in README.th.md. -->
+```
+Tokenize_
+['อนงค์ลักษณ์', '9', '/56', 'ม.', '3', 'หมู่', 'บ้านนฤมลศิริ', 'ซอย', '2', 'ซ.', 'บุญศิริ', 'ถ', '.', 'สุขุมวิท', 'บางเมือง', 'เมืองสมุทรปราการ', 'สมุทรปนาการ', '10270', 'โทร', '.']
+SpellChecker_
+['อนงค์ลักษณ์', '9', '/56', 'ม.', '3', 'หมู่', 'บ้านนฤมลศิริ', 'ซอย', '2', 'ซ.', 'บุญศิริ', 'ถ', '.', 'สุขุมวิท', 'บางเมือง', 'เมืองสมุทรปราการ', 'สมุทรปราการ', '10270', 'โทร', '.']
+Matching_
+{'province': 'สมุทรปราการ', 'amphoe': 'เมืองสมุทรปราการ', 'district': 'บางเมือง', 'zipcode': '10270', 'name': '', 'phone': '0956029655'}
+```
+This program on time
+- Tagging Word require province, amphoe, district, zipcode.
+program Can't
+- predict this address.
